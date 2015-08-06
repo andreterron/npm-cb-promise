@@ -4,10 +4,11 @@
   "version": "0.0.1",
   "author": "Mariano Pardo (Codexar) <marianomdq1@gmail.com>",
   "dependencies": {
-    "q": "~0.9.7"
+    "any-promise": "andreterron/any-promise"
   },
   "devDependencies": {
-    "expect.js": "latest"
+    "expect.js": "latest",
+    "q": "~0.9.7"
   },
   "scripts": {
     "prepublish": "npm prune",
@@ -15,6 +16,7 @@
   },
   "keywords": [
     "q",
+    "any-promise",
     "callback",
     "promise",
     "utils",

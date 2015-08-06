@@ -1,4 +1,6 @@
-var Q = require('q');
+'use strict';
+
+var Promise = require('any-promise');
 
 /**
  * Allow your methods be called by Callbacks or Promises.
@@ -20,14 +22,25 @@ var cbPromise = function (err, data, cb) {
 		return null;
 	}
 	// Promises //
-	var deferred = Q.defer();
-	if (err) {
-		deferred.reject(err);
-	}
-	else {
-		deferred.resolve(data);
-	}
-	return deferred.promise;
+	return new Promise(function(resolve, reject) {
+		if (err) {
+			reject(err);
+		} else {
+			try {
+				resolve(data);
+			} catch(e) {
+				reject(e);
+			}
+		}
+	});
+};
+
+cbPromise.reject = function(err, cb) {
+	return cbPromise(err, null, cb);
+};
+
+cbPromise.resolve = function(data, cb) {
+	return cbPromise(null, data, cb);
 };
 
 module.exports = cbPromise;
